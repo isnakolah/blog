@@ -2,7 +2,7 @@ using Domain.Entities;
 
 namespace Application.Articles.Queries.GetAll;
 
-public record GetAllArticlesQuery(PaginationFilter PaginationFilter) : IRequestPaginatedWrapper<Article>;
+public sealed record GetAllArticlesQuery(PaginationFilter PaginationFilter) : IRequestPaginatedWrapper<Article>;
 
 public class GetAllArticlesQueryHandler : IRequestPaginatedHandlerWrapper<GetAllArticlesQuery, Article>
 {
@@ -18,7 +18,7 @@ public class GetAllArticlesQueryHandler : IRequestPaginatedHandlerWrapper<GetAll
     {
         var paginatedArticles = await _paginate.GetPaginatedResultAsync<Article, Article>(
             _context.Articles.AsQueryable(), request.PaginationFilter, cancellationToken);
-
+        
         return paginatedArticles;
     }
 }

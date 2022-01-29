@@ -1,6 +1,5 @@
 using Application;
 using Infrastructure;
-using WebUI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +7,6 @@ builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 
 var app = builder.Build();
 
