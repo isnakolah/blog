@@ -1,0 +1,30 @@
+@using Domain.Entities
+
+@if (articles is null)
+{
+    <p>There are no articles</p>
+}
+else
+{
+    @foreach (var article in articles)
+    {
+        <ArticleCard Article=@article/>
+    }
+}
+
+@code {
+    private IEnumerable<Article>? articles;
+
+    protected override Task OnInitializedAsync()
+    {
+        articles = new Article[]
+        {
+            new() {Id = Guid.NewGuid(), Title = "React Testing", Excerpt = "Learn React Testing"},
+            new() {Id = Guid.NewGuid(), Title = ".NET Blazor with Tailwind CSS", Excerpt = "Learn .NET Blazor with Tailwind"},
+            new() {Id = Guid.NewGuid(), Title = "Django with Tailwind CSS", Excerpt = "Learn Django with Tailwind CSS"}
+        };
+
+        return Task.CompletedTask;
+    }
+
+}

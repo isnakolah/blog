@@ -19,7 +19,7 @@
         <Exec Command="npm -v" ContinueOnError="true">
             <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
         </Exec>
-        <Error Condition="'$(ErrorCode)' != '0'" Text="You must install NPM to build this application"/>
+        <Error Condition="'$(ErrorCode)' != '0'" Text="You must install NPM to build this application" />
     </Target>
     
     <Target Name="NpmInstall" BeforeTargets="BuildCSS" Inputs="package.json" Outputs="$(NpmLastInstall)">

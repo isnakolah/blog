@@ -1,0 +1,11 @@
+<div>
+    @Article.Title
+    @Article.Excerpt
+</div>
+
+@code {
+
+    [Parameter]
+    public Domain.Entities.Article Article { get; init; } = new();
+
+}
