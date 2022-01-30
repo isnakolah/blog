@@ -29,12 +29,12 @@ internal class ApplicationDbContext : DbContext, IApplicationDbContext
             switch (entry.State)
             {
                 case EntityState.Added:
-                    entry.Entity.CreatedBy = new Person { Id = Guid.NewGuid() };
+                    entry.Entity.CreatedById = Guid.NewGuid();
                     entry.Entity.CreatedOn = _dateTime.Now;
                     break;
                 case EntityState.Modified:
-                    entry.Entity.EditedBy = new Person { Id = Guid.NewGuid() };
-                    entry.Entity.CreatedOn = _dateTime.Now;
+                    entry.Entity.EditedById = Guid.NewGuid();
+                    entry.Entity.EditedOn = _dateTime.Now;
                     break;
             }
         }

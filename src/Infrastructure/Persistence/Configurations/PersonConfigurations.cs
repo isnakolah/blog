@@ -8,5 +8,6 @@ public class PersonConfigurations : IEntityTypeConfiguration<Person>
 {
     public void Configure(EntityTypeBuilder<Person> builder)
     {
+        builder.Ignore(x => x.DomainEvents);
     }
 }
