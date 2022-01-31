@@ -5,7 +5,7 @@ namespace Domain.Entities;
 public sealed record Author : AuditableEntity, IHasDomainEvent
 {
     public Guid Id { get; init; }
-    public bool IsActive { get; private set; }
+    public bool IsActivated { get; private set; }
     
     public Person Person { get; set; } = default!;
     public ICollection<Article>? Articles { get; set; }
@@ -14,7 +14,7 @@ public sealed record Author : AuditableEntity, IHasDomainEvent
 
     public void Activate()
     {
-        IsActive = true;
+        IsActivated = true;
         DomainEvents.Add(new AuthorCreatedEvent(this));
     }
 }

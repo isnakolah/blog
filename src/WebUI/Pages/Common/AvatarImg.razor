@@ -1,0 +1,21 @@
+@if (Src is not null)
+{
+    <img src="@Src" alt="@Alt" height="@Size.ToString()" width="@Size.ToString()" class="@Classes" />
+}
+else
+{
+    <img src="https://miro.medium.com/max/1400/1*aRU0itvptPQIGVKxUHj9Bg.png" alt="@Alt" height="@Size.ToString()" width="@Size.ToString()" class="@Classes" />
+}
+
+@code {
+    private const string Classes = "align-middle rounded-full";
+    
+    [Parameter]
+    public Uri? Src { get; set; }
+
+    [Parameter]
+    public string Alt { get; set; } = default!;
+    
+    [Parameter]
+    public int Size { get; set; }
+}

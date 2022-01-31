@@ -19,12 +19,11 @@ else
     {
         articles = new Article[]
         {
-            new() {Id = Guid.NewGuid(), Title = "React Testing", Excerpt = "Learn React Testing"},
+            new() {Id = Guid.NewGuid(), Title = "React Testing", Excerpt = "Learn React Testing", FeaturedImageUri = new("https://miro.medium.com/max/1400/1*aRU0itvptPQIGVKxUHj9Bg.png")},
             new() {Id = Guid.NewGuid(), Title = ".NET Blazor with Tailwind CSS", Excerpt = "Learn .NET Blazor with Tailwind"},
             new() {Id = Guid.NewGuid(), Title = "Django with Tailwind CSS", Excerpt = "Learn Django with Tailwind CSS"}
         };
 
         return Task.CompletedTask;
     }
-
 }
