@@ -9,13 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <base href="~/"/>
     <link href="css/app.css" rel="stylesheet"/>
+    <link href="css/base.css" rel="stylesheet"/>
     <title>ZeBlog</title>
     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered"/>
 </head>
-<body>
+<body class="h-screen">
     @RenderBody()
 
-    @*<div>
+    <div id="blazor-error-ui" class="hidden">
         <environment include="Staging,Production">
             An error has occurred. This application may no longer respond until reloaded.
         </environment>
@@ -24,7 +25,7 @@
         </environment>
         <a href="" class="">Reload</a>
         <a class="">🗙</a>
-    </div>*@
+    </div>
 
     <script src="_framework/blazor.server.js"></script>
 </body>
