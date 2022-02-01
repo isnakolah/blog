@@ -8,22 +8,11 @@
     </div>
 
     <div class="flex-1 flex flex-col justify-between pb-1">
-        <p class="text-sm">
-            @if (categories is not null)
-            {
-                <span class="font-semibold text-gray-800">
-                    @foreach (var (category, index) in categories.Select((value, i) => (value, i)))
-                    {
-                        <a href="category/@category.Slug" class="cursor-pointer hover:text-blue-600">
-                            @category.Name@(index != categories.Length - 1 ? ", " : "")
-                        </a>
-                    }
-                    -
-                </span>
-            }
-            <span class="text-gray-500">@date</span>
-        </p>
-        
+        <CategoryAndDate 
+            Categories="@categories" 
+            Date="@Article.CreatedOn"
+        />
+
         <div>
             <h3 class="transition duration-700 cursor-pointer hover:text-blue-700 text-4xl font-black pb-4 leading-tight">
                 <a href="articles/@Article.Slug">
@@ -31,17 +20,16 @@
                 </a>
             </h3>
             <p class="text-gray-500 text-sm leading-relaxed">
-                @Article.Excerpt<span class="text-sm text-blue-700 cursor-pointer"><a href="articles/@Article.Slug"> Read more...</a></span>
+                @Article.Excerpt<span class="text-sm text-blue-700 cursor-pointer">
+                    <a href="articles/@Article.Slug"> Read more...</a>
+                </span>
             </p>
         </div>
-        
-        <div class="flex content-center space-x-2 ">
-            <AvatarImg Src="@Article.Author.Person.ProfilePhotoUri" Alt="@Article.Author.Person.Occupation?.Name" Size="45"/>
-            <div class="flex flex-col cursor-pointer">
-                <p class="text-sm font-semibold">@Article.Author.Person.FirstName @Article.Author.Person.LastName</p>
-                <p class="text-gray-500" style="font-size: 13px">@Article.Author.Person.Occupation?.Name</p>
-            </div>
-        </div>
+        <AuthorSummary
+            ProfilePhotoUri="@Article.Author.Person.ProfilePhotoUri"
+            ProfilePhotoAlt="@GetFullName"
+            AuthorName="@GetFullName"
+            AuthorOccupation="@Article.Author.Person.Occupation?.Name"/>
     </div>
 </div>
 
@@ -49,15 +37,15 @@
 @code {
 
     private (string Name, string Slug)[]? categories;
-    private string date;
 
-    [Parameter]
-    public Article Article { get; set; } = default!;
+    [Parameter, EditorRequired]
+    public Article Article { get; init; } = default!;
 
     protected override void OnInitialized()
     {
         categories = Article.Categories.Select(x => (x.Name, x.Slug)).ToArray();
-        date = string.Join(", ", Article.CreatedOn.ToLongDateString().Split(", ").Take(1..));
     }
+
+    private string GetFullName => Article.Author.Person.FirstName + " " + Article.Author.Person.LastName;
 
 }

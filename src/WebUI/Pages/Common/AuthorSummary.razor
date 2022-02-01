@@ -1,0 +1,24 @@
+
+<div class="flex content-center space-x-2 ">
+    <AvatarImg Src="@ProfilePhotoUri" Alt="@ProfilePhotoAlt" Size="45"/>
+    <div class="flex flex-col cursor-pointer">
+        <p class="text-sm font-semibold">@AuthorName</p>
+        <p class="text-gray-500" style="font-size: 13px">@AuthorOccupation</p>
+    </div>
+</div>
+
+@code {
+
+    [Parameter, EditorRequired]
+    public string AuthorName { get; init; } = default!;
+    
+    [Parameter]
+    public Uri? ProfilePhotoUri { get; init; }
+
+    [Parameter]
+    public string? AuthorOccupation { get; init; }
+
+    [Parameter]
+    public string? ProfilePhotoAlt { get; init; }
+
+}

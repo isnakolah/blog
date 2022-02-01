@@ -1,0 +1,35 @@
+<p class="text-sm">
+    @if (Categories is not null)
+    {
+        <span class="font-semibold text-gray-800">
+            @foreach (var (category, index) in Categories.Select((value, i) => (value, i)))
+            {
+                <a href="category/@category.Slug" class="cursor-pointer hover:text-blue-600">
+                    @category.Name@(index != Categories.Length - 1 ? ", " : "")
+                </a>
+            }
+            @(date is not null ? " - " : "")
+        </span>
+    }
+    @if (date is not null)
+    {
+        <span class="text-gray-500">@date</span>
+    }
+</p>
+
+@code {
+
+    private string? date;
+
+    [Parameter]
+    public (string Name, string Slug)[]? Categories { get; init; }
+
+    [Parameter]
+    public DateTime Date { get; set; }
+
+    protected override void OnInitialized()
+    {
+        date = string.Join(", ", Date.ToLongDateString().Split(", ").Take(1..));
+    }
+
+}
