@@ -8,6 +8,7 @@ public sealed record Person : AuditableEntity, IHasDomainEvent
     public string? OtherNames { get; set; }
     public Uri? ProfilePhotoUri { get; set; }
     
+    public Sex? Sex { get; set; }
     public Occupation? Occupation { get; set; }
     public Author? Author { get; set; }
     public ICollection<Like>? Likes { get; set; }
