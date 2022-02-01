@@ -1,10 +1,43 @@
 @using Domain.Entities
 
-<h3>@Article.Title</h3>
-<img src="@Article.FeaturedImageUri?.ToString()" alt="@Article.Title" />
+<div class="flex space-x-10">
+    <div class="flex-1">
+        <img src="@Article.FeaturedImageUri?.ToString()" alt="@Article.Title" class="rounded-lg max-w-full h-auto"/>
+    </div>
+
+    <div class="flex-1 flex flex-col justify-between pb-1">
+        <p class="text-sm">
+            @if (categories is not null)
+            {
+                <span class="font-semibold">@categories — </span>
+            }
+            <span class="text-gray-500">@Article.CreatedOn.ToLongDateString()</span>
+        </p>
+        <div>
+            <h3 class="text-4xl font-black pb-4 leading-tight">@Article.Title</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">@Article.Excerpt</p>
+        </div>
+        <div class="flex content-center space-x-2">
+            <AvatarImg Src="@Article.FeaturedImageUri" Alt="@Article.Author.Person.Occupation?.Name" Size="45"/>
+            <div class="flex flex-col">
+                <p class="text-sm font-semibold">@Article.Author.Person.FirstName @Article.Author.Person.LastName</p>
+                <p class="text-gray-500" style="font-size: 13px">@Article.Author.Person.Occupation?.Name</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @code {
+
+    private string? categories;
+
     [Parameter]
     public Article Article { get; set; } = default!;
+
+    protected override void OnInitialized()
+    {
+        categories = string.Join(", ", Article.Categories.Select(x => x.Name));
+    }
+
 }

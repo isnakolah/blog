@@ -1,12 +1,13 @@
 @using Domain.Entities
 
-<div class="flex align-center justify-center">
+<div class="flex align-center justify-center pb-12">
     <h3 class="text-4xl font-extrabold">Trending</h3>
 </div>
 
 <ArticleTrendingCard Article="@Article"/>
 
 @code {
+    
     private readonly Article Article = new()
     {
         Id = Guid.NewGuid(), 
@@ -20,8 +21,17 @@
             {
                 Id = Guid.NewGuid(),
                 FirstName = "Sergy",
-                LastName = "Campbell"
+                LastName = "Campbell",
+                Occupation = new() {Id = Guid.NewGuid(), Name = "CEO and Founder"}
+                
             }
-        }
+        },
+        Categories = new List<Category>()
+        {
+            new() {Id = Guid.NewGuid(), Name = "Business"},
+            new() {Id = Guid.NewGuid(), Name = "Travel"}
+        },
+        CreatedOn = DateTime.Now
     };
+    
 }
