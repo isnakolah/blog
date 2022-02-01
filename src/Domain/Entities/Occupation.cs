@@ -1,6 +1,6 @@
 namespace Domain.Entities;
 
-public record Occupation
+public sealed record Occupation
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = default!;

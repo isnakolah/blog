@@ -19,9 +19,12 @@ internal class ApplicationDbContext : DbContext, IApplicationDbContext
     public DbSet<Person> Persons => Set<Person>();
     public DbSet<Author> Authors => Set<Author>();
     public DbSet<Article> Articles => Set<Article>();
+    public DbSet<Category> Categories => Set<Category>();
     public DbSet<Comment> Comments => Set<Comment>();
     public DbSet<Like> Likes => Set<Like>();
-    
+    public DbSet<Sex> Sexes => Set<Sex>();
+    public DbSet<Occupation> Occupations => Set<Occupation>();
+
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default!)
     {
         foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
