@@ -5,7 +5,7 @@
     }
     else
     {
-        <img src="https://miro.medium.com/max/1400/1*aRU0itvptPQIGVKxUHj9Bg.png" alt="@Alt" class="@Classes"/>
+        <img src="https://preview.colorlib.com/theme/magdesign/images/xperson_1.jpg.pagespeed.ic.Zebptmx_f8.webp" alt="@Alt" class="@Classes"/>
     }
 </div>
 
@@ -17,8 +17,8 @@
     public Uri? Src { get; set; }
 
     [Parameter]
-    public string Alt { get; set; } = default!;
+    public string? Alt { get; set; }
     
-    [Parameter]
+    [Parameter, EditorRequired]
     public int Size { get; set; }
 }

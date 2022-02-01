@@ -1,26 +1,46 @@
 @using Domain.Entities
 
-<div class="bg-white shadow-lg rounded-lg p-o lg:p-8 pb-12 mb-8">
-    <div class="relative overflow-hidden shadow-md pb-80 mb-6">
-        @if (Article.FeaturedImageUri is not null)
-        {
-            <img src="@Article.FeaturedImageUri.ToString()" alt="@Article.Title" class="object-top absolute h-80 w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"/>
-        }
+<div class="flex flex-col space-y-3">
+    <div class="flex-1 cursor-pointer">
+        <a href="articles/@Article.Slug">
+            <img src="@Article.FeaturedImageUri?.ToString()" alt="@Article.Title" class="rounded-lg max-w-full h-auto"/>
+        </a>
     </div>
-    
-    <h1 class="transition duration-700 text-center mb-8 cursor-pointer hover:text-pink-600 text-3xl font-semibold"> 
-        <a href="/articles/@Article.Slug">@Article.Title</a>
-    </h1>
-    
-    <div class="block lg:flex text-center items-center justify-center mb-8 w-full">
-        <div class="flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto mr-8">
-            <AvatarImg Src="@Article?.Author?.Person?.ProfilePhotoUri" Alt="@Article?.Author?.Person?.FirstName" Size="30"/>
-            <p class="inline align-middle text-gray-700 ml-2 text-lg">Daniel</p>
-        </div>
-    </div>
+
+    <CategoryAndDate
+        Categories="@categories"
+        Date="@Article.CreatedOn"/>
+
+    <h3 class="transition duration-700 cursor-pointer hover:text-blue-700 text-lg font-black leading-tight">
+        <a href="articles/@Article.Slug">
+            @Article.Title
+        </a>
+    </h3>
+
+    <p class="text-gray-500 text-sm leading-relaxed">
+        @Article.Excerpt
+        <span class="text-sm text-blue-700 cursor-pointer">
+            <a href="articles/@Article.Slug"> Read more...</a>
+        </span>
+    </p>
+
+    <AuthorSummary
+        ProfilePhotoUri="@Article.Author.Person.ProfilePhotoUri"
+        ProfilePhotoAlt="@GetFullName"
+        AuthorName="@GetFullName"
+        AuthorOccupation="@Article.Author.Person.Occupation?.Name"/>
 </div>
 
 @code {
-    [Parameter]
-    public Article Article { get; init; } = new();
+    private (string Name, string Slug)[]? categories;
+
+    [Parameter, EditorRequired]
+    public Article Article { get; init; } = default!;
+
+    protected override void OnInitialized()
+    {
+        categories = Article.Categories.Select(x => (x.Name, x.Slug)).ToArray();
+    }
+
+    private string GetFullName => Article.Author.Person.FirstName + " " + Article.Author.Person.LastName;
 }
