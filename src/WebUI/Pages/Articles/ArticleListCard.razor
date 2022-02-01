@@ -1,6 +1,6 @@
 @using Domain.Entities
 
-<div class="flex flex-col space-y-3">
+<div class="flex flex-col space-y-3 border-b md:border-none border-gray-300 pb-3 pt-5 md:pt-0">
     <div class="flex-1 cursor-pointer">
         <a href="articles/@Article.Slug">
             <img src="@Article.FeaturedImageUri?.ToString()" alt="@Article.Title" class="rounded-lg max-w-full h-auto"/>
@@ -11,7 +11,7 @@
         Categories="@categories"
         Date="@Article.CreatedOn"/>
 
-    <h3 class="transition duration-700 cursor-pointer hover:text-blue-700 text-lg font-black leading-tight">
+    <h3 class="md:transition md:duration-700 cursor-pointer md:hover:text-blue-700 text-lg font-black leading-tight">
         <a href="articles/@Article.Slug">
             @Article.Title
         </a>
