@@ -12,6 +12,7 @@ public sealed record Article : AuditableEntity, IHasDomainEvent
 
     public Author Author { get; set; } = default!;
     public ICollection<Like> Likes { get; set; } = default!;
+    public ICollection<Category> Categories { get; set; } = default!;
 
     public List<DomainEvent> DomainEvents { get; init; } = default!;
 }
