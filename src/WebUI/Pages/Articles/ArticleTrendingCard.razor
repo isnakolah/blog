@@ -1,0 +1,10 @@
+@using Domain.Entities
+
+<h3>@Article.Title</h3>
+<img src="@Article.FeaturedImageUri?.ToString()" alt="@Article.Title" />
+
+
+@code {
+    [Parameter]
+    public Article Article { get; set; } = default!;
+}

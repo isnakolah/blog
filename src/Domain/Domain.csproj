@@ -5,15 +5,15 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-
-    <ItemGroup>
-        <Folder Include="ValueObjects" />
-    </ItemGroup>
     
     <ItemGroup>
         <Using Include="Domain.Common.Entities" />
         <Using Include="Domain.Common.Interfaces" />
         <Using Include="Domain.Entities" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="ValueObjects" />
     </ItemGroup>
 
 </Project>

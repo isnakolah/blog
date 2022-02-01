@@ -1,0 +1,27 @@
+@using Domain.Entities
+
+<div class="flex align-center justify-center">
+    <h3 class="text-4xl font-extrabold">Trending</h3>
+</div>
+
+<ArticleTrendingCard Article="@Article"/>
+
+@code {
+    private readonly Article Article = new()
+    {
+        Id = Guid.NewGuid(), 
+        Title = "Your most unhappy customers are your greatest source of learning.",
+        Excerpt = "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
+        FeaturedImageUri = new Uri("https://preview.colorlib.com/theme/magdesign/images/xpost_lg_1.jpg.pagespeed.ic.FHpKG3L7pq.webp"),
+        Author = new()
+        {
+            Id = Guid.NewGuid(),
+            Person = new()
+            {
+                Id = Guid.NewGuid(),
+                FirstName = "Sergy",
+                LastName = "Campbell"
+            }
+        }
+    };
+}
