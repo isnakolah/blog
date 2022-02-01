@@ -1,3 +1,5 @@
+@using Domain.Entities
+
 <div class="bg-white shadow-lg rounded-lg p-o lg:p-8 pb-12 mb-8">
     <div class="relative overflow-hidden shadow-md pb-80 mb-6">
         @if (Article.FeaturedImageUri is not null)
@@ -18,5 +20,5 @@
 
 @code {
     [Parameter]
-    public Domain.Entities.Article Article { get; init; } = new();
+    public Article Article { get; init; } = new();
 }
