@@ -1,8 +1,10 @@
 @using Domain.Entities
 
 <div>
-    <div class="flex align-center justify-center pb-12">
-        <h3 class="text-4xl font-extrabold">Trending</h3>
+    <div class="flex align-center justify-center pb-8 md:pb-12">
+        <h3 class="text-2xl md:text-4xl font-extrabold">
+            Trending
+        </h3>
     </div>
 
     <ArticleTrendingCard Article="@Article"/>
@@ -19,12 +21,16 @@
         Author = new Author
         {
             Id = Guid.NewGuid(),
-            Person = new()
+            Person = new Person
             {
                 Id = Guid.NewGuid(),
                 FirstName = "Sergy",
                 LastName = "Campbell",
-                Occupation = new() {Id = Guid.NewGuid(), Name = "CEO and Founder"}
+                Occupation = new Occupation
+                {
+                    Id = Guid.NewGuid(), 
+                    Name = "CEO and Founder"
+                }
             }
         },
         Categories = new List<Category>()

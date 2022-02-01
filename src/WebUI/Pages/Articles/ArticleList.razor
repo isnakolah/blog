@@ -1,22 +1,18 @@
 @using Domain.Entities
 
-<div>
-    <h3 class="font-semibold text-2xl pb-5 underline">Articles</h3>
-    
-    @if (articles is null)
-    {
-        <p>There are no articles</p>
-    }
-    else
-    {
-        <div class="grid sm:grid-cols-1 md:grid-cols-3 md:gap-12 xl:grid-cols-4">
-            @foreach (var article in articles)
-            {
-                <ArticleListCard Article=@article/>
-            }
-        </div>
-    }
-</div>
+@if (articles is null)
+{
+    <p>There are no articles</p>
+}
+else
+{
+    <div class="grid sm:grid-cols-1 md:grid-cols-3 md:gap-12 lg:grid-cols-3">
+        @foreach (var article in articles)
+        {
+            <ArticleListCard Article=@article/>
+        }
+    </div>
+}
 
 
 @code {

@@ -1,17 +1,19 @@
 @using Domain.Entities
 
 <div class="sm:flex md:space-x-10">
-    <div class="flex-1 cursor-pointer">
+    <div class="cursor-pointer md:flex-1 lg:w-96 lg:flex-none">
         <a href="articles/@Article.Slug">
-            <img src="@Article.FeaturedImageUri?.ToString()" alt="@Article.Title" class="rounded-lg max-w-full h-auto"/>
+            <img src="@Article.FeaturedImageUri?.ToString()" alt="@Article.Title" class="rounded-lg max-w-full h-auto "/>
         </a>
     </div>
 
-    <div class="flex-1 flex flex-col justify-between pb-1 space-y-4">
-        <CategoryAndDate Categories="@categories" Date="@Article.CreatedOn"/>
-
+    <div class="md:flex-1 flex flex-col justify-between md:justify-center pb-1 space-y-4">
+        <div class="pt-4 md:pt-0">
+            <CategoryAndDate Categories="@categories" Date="@Article.CreatedOn"/>
+        </div>
+ 
         <div>
-            <h3 class="transition duration-700 cursor-pointer hover:text-blue-700 text-4xl font-black pb-4 leading-tight">
+            <h3 class="md:transition md:duration-700 cursor-pointer md:hover:text-blue-700 text-2xl md:text-4xl font-black pb-4 leading-tight">
                 <a href="articles/@Article.Slug">
                     @Article.Title
                 </a>
