@@ -1,14 +1,17 @@
-@if (Src is not null)
-{
-    <img src="@Src" alt="@Alt" height="@Size.ToString()" width="@Size.ToString()" class="@Classes" />
-}
-else
-{
-    <img src="https://miro.medium.com/max/1400/1*aRU0itvptPQIGVKxUHj9Bg.png" alt="@Alt" height="@Size.ToString()" width="@Size.ToString()" class="@Classes" />
-}
+<div style="height: @Size.ToString()px; width: @Size.ToString()px">
+    @if (Src is not null)
+    {
+        <img src="@Src" alt="@Alt" class="@Classes"/>
+    }
+    else
+    {
+        <img src="https://miro.medium.com/max/1400/1*aRU0itvptPQIGVKxUHj9Bg.png" alt="@Alt" class="@Classes"/>
+    }
+</div>
+
 
 @code {
-    private const string Classes = "align-middle rounded-full";
+    private const string Classes = $"align-middle rounded-full h-full";
     
     [Parameter]
     public Uri? Src { get; set; }
