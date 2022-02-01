@@ -13,33 +13,37 @@ else
 }
 
 @code {
+    
     private List<Article>? articles;
 
     protected override Task OnInitializedAsync()
     {
         articles ??= new List<Article>();
-        
-        foreach (var _ in Enumerable.Range(0, 10))
+
+        foreach (var _ in Enumerable.Range(0, 1))
         {
-            articles.Add(    new Article
+            articles.Add(new Article
             {
-                Id = Guid.NewGuid(), 
+                Id = Guid.NewGuid(),
                 Title = "Your most unhappy customers are your greatest source of learning.",
                 Excerpt = "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
                 FeaturedImageUri = new Uri("https://preview.colorlib.com/theme/magdesign/images/xpost_lg_1.jpg.pagespeed.ic.FHpKG3L7pq.webp"),
-                Author = new()
+                Author = new Author
                 {
                     Id = Guid.NewGuid(),
-                    Person = new()
+                    Person = new Person
                     {
                         Id = Guid.NewGuid(),
                         FirstName = "Sergy",
                         LastName = "Campbell",
-                        Occupation = new() {Id = Guid.NewGuid(), Name = "CEO and Founder"}
-                
+                        Occupation = new Occupation
+                        {
+                            Id = Guid.NewGuid(),
+                            Name = "CEO and Founder"
+                        }
                     }
                 },
-                Categories = new List<Category>()
+                Categories = new List<Category>
                 {
                     new() {Id = Guid.NewGuid(), Name = "Business"},
                     new() {Id = Guid.NewGuid(), Name = "Travel"}
@@ -50,4 +54,5 @@ else
 
         return Task.CompletedTask;
     }
+
 }

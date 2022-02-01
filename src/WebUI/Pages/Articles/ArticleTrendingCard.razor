@@ -23,6 +23,7 @@
             }
             <span class="text-gray-500">@date</span>
         </p>
+        
         <div>
             <h3 class="transition duration-700 cursor-pointer hover:text-blue-700 text-4xl font-black pb-4 leading-tight">
                 <a href="articles/@Article.Slug">
@@ -33,6 +34,7 @@
                 @Article.Excerpt<span class="text-sm text-blue-700 cursor-pointer"><a href="articles/@Article.Slug"> Read more...</a></span>
             </p>
         </div>
+        
         <div class="flex content-center space-x-2 ">
             <AvatarImg Src="@Article.Author.Person.ProfilePhotoUri" Alt="@Article.Author.Person.Occupation?.Name" Size="45"/>
             <div class="flex flex-col cursor-pointer">

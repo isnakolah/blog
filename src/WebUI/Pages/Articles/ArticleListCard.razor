@@ -7,9 +7,11 @@
             <img src="@Article.FeaturedImageUri.ToString()" alt="@Article.Title" class="object-top absolute h-80 w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"/>
         }
     </div>
+    
     <h1 class="transition duration-700 text-center mb-8 cursor-pointer hover:text-pink-600 text-3xl font-semibold"> 
         <a href="/articles/@Article.Slug">@Article.Title</a>
     </h1>
+    
     <div class="block lg:flex text-center items-center justify-center mb-8 w-full">
         <div class="flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto mr-8">
             <AvatarImg Src="@Article?.Author?.Person?.ProfilePhotoUri" Alt="@Article?.Author?.Person?.FirstName" Size="30"/>
