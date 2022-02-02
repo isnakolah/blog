@@ -1,0 +1,10 @@
+@page "/categories/{CategorySlug}"
+
+<p>@CategorySlug</p>
+
+@code {
+
+    [Parameter]
+    public string CategorySlug { get; set; } = default!;
+
+}
