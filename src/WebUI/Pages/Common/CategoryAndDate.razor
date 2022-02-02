@@ -1,21 +1,21 @@
-<p class="text-sm flex flex-col space-y-3 md:flex-row md:space-y-0">
+
+<p class="text-sm flex flex-col-reverse space-y-3 md:flex-row md:space-y-0">
     @if (Categories is not null)
     {
         <span class="font-semibold text-gray-800 mt-1 md:mt-0">
             @foreach (var (category, index) in Categories.Select((value, i) => (value, i)))
             {
                 <span class="flex-inline cursor-pointer text-gray-100 border border-solid border-green-300 p-2 mr-1 rounded-full bg-blue-400 md:flex-none md:rounded-none md:hover:text-blue-600 md:border-none md:p-0 md:bg-transparent md:mr-0 md:text-black">
-                    <a href="category/@category.Slug">
-                        @category.Name<span class="sm-hide md:pr-1">@(index != Categories.Length - 1 ? ", " : "")</span>
-                    </a>
+                    <a href="categories/@category.Slug">@category.Name</a>
                 </span>
+                <span class="sm-hide md:pr-1">@(index != Categories.Length - 1 ? ", " : "")</span>
             }
             <span class="sm-hide">@(date is not null ? " - " : "")</span>
         </span>
     }
     @if (date is not null)
     {
-        <span class="text-gray-500 md:ml-1">@date</span>
+        <span class="text-gray-500 pb-2 ml-1 md:pb-0">@date</span>
     }
 </p>
 
@@ -35,4 +35,3 @@
     }
 
 }
-

@@ -1,15 +1,19 @@
 @using Domain.Entities
 
 <div class="flex flex-col space-y-3 border-b md:border-none border-gray-300 pb-3 pt-5 md:pt-0">
-    <div class="flex-1 cursor-pointer">
-        <a href="articles/@Article.Slug">
-            <img src="@Article.FeaturedImageUri?.ToString()" alt="@Article.Title" class="rounded-lg max-w-full h-auto"/>
-        </a>
+    <div class="h-48 xl:h-60">
+        <div class="flex flex-col justify-between cursor-pointer rounded-lg p-3 bg-cover bg-no-repeat bg-center h-full" style="background-image: url('@Article.FeaturedImageUri?.ToString()')">
+            <AuthorSummary
+                ProfilePhotoUri="@Article.Author.Person.ProfilePhotoUri"
+                ProfilePhotoAlt="@GetFullName"
+                AuthorName="@GetFullName"
+                AuthorOccupation="@Article.Author.Person.Occupation?.Name"/>
+            
+            <div class="pb-2 md:pb-0">
+                <CategoryAndDate Categories="@categories" Date="@Article.CreatedOn"/>
+            </div>
+        </div>
     </div>
-
-    <CategoryAndDate
-        Categories="@categories"
-        Date="@Article.CreatedOn"/>
 
     <h3 class="md:transition md:duration-700 cursor-pointer md:hover:text-blue-700 text-lg font-black leading-tight">
         <a href="articles/@Article.Slug">
@@ -24,14 +28,10 @@
         </span>
     </p>
 
-    <AuthorSummary
-        ProfilePhotoUri="@Article.Author.Person.ProfilePhotoUri"
-        ProfilePhotoAlt="@GetFullName"
-        AuthorName="@GetFullName"
-        AuthorOccupation="@Article.Author.Person.Occupation?.Name"/>
 </div>
 
 @code {
+
     private (string Name, string Slug)[]? categories;
 
     [Parameter, EditorRequired]
@@ -43,4 +43,5 @@
     }
 
     private string GetFullName => Article.Author.Person.FirstName + " " + Article.Author.Person.LastName;
+
 }
