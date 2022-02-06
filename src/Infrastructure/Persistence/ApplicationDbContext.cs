@@ -41,7 +41,7 @@ internal class ApplicationDbContext : DbContext, IApplicationDbContext
                     break;
             }
         }
-        
+
         var result = await base.SaveChangesAsync(cancellationToken);
 
         await DispatchEvents();
@@ -52,7 +52,7 @@ internal class ApplicationDbContext : DbContext, IApplicationDbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        
+
         base.OnModelCreating(builder);
     }
 

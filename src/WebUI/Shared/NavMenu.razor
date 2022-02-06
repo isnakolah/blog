@@ -1,21 +1,11 @@
 ﻿@using Domain.Entities
 
-<div class="container mx-auto px-10 mb-8">
-    <div class="border-b w-full inline-block border-blue-400 py-8">
+<div class="container mx-auto px-10 mb-8 pt-5">
+    <div class="w-full inline-block">
         <div class="md:float-left block">
             <NavLink href="" class="cursor-pointer font-bold text-2xl md:text-4xl text-black">
                 ZeBlog
             </NavLink>
-        </div>
-        <div class="hidden md:float-left md:contents">
-            @foreach (var category in Categories)
-            {
-                <NavLink href="@category.Slug">
-                    <span class="md:float-right mt-2 align-middle text-black ml-4 font-semibold">
-                        @category.Name
-                    </span>
-                </NavLink>
-            }
         </div>
     </div>
 </div>
@@ -24,7 +14,7 @@
 
     private Category[] Categories = {
         new() {Id = Guid.NewGuid(), Name = "Web Development"},
-        new() {Id = Guid.NewGuid(), Name = "Game Development"},
+        new() {Id = Guid.NewGuid(), Name = "Game Development"}
     };
 
 }
