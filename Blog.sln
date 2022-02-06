@@ -14,6 +14,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution 
 		Dockerfile = Dockerfile
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{3BC984A5-29A3-439A-99A8-D0C9DCA52058}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\production.yml = .github\workflows\production.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +41,8 @@ Global
 		{B0E10E44-2545-4037-9C57-3208C04C1AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0E10E44-2545-4037-9C57-3208C04C1AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0E10E44-2545-4037-9C57-3208C04C1AFF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3BC984A5-29A3-439A-99A8-D0C9DCA52058} = {F954E671-68F0-4AA5-A124-AEB790E65080}
 	EndGlobalSection
 EndGlobal
