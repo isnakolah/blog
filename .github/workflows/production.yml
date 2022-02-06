@@ -1,9 +1,9 @@
-name: ci
+name: Production workflow
 
 on:
   push:
     branches:
-      - "main"
+      - "master"
 
 jobs:
   docker:
