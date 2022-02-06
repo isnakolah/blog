@@ -1,4 +1,5 @@
 @using Domain.Entities
+@inject NavigationManager NavigationManager
 
 <div class="flex flex-col space-y-3 border-b md:border-none border-gray-300 pb-3 pt-5 md:pt-0">
     <div class="h-48 xl:h-60">
@@ -15,16 +16,14 @@
         </div>
     </div>
 
-    <h3 class="md:transition md:duration-700 cursor-pointer md:hover:text-blue-700 text-lg font-black leading-tight">
-        <a href="articles/@Article.Slug">
-            @Article.Title
-        </a>
+    <h3 class="md:transition md:duration-700 cursor-pointer md:hover:text-blue-700 text-lg font-black leading-tight" onclick="@NavigateToArticle">
+        @Article.Title
     </h3>
 
     <p class="text-gray-500 text-sm leading-relaxed">
         @Article.Excerpt
-        <span class="text-sm text-blue-700 cursor-pointer">
-            <a href="articles/@Article.Slug"> Read more...</a>
+        <span class="text-sm text-blue-700 cursor-pointer" onclick="@NavigateToArticle">
+             Read more...
         </span>
     </p>
 
@@ -43,5 +42,7 @@
     }
 
     private string GetFullName => Article.Author.Person.FirstName + " " + Article.Author.Person.LastName;
+
+    private void NavigateToArticle() => NavigationManager.NavigateTo($"articles/{Article.Slug}");
 
 }

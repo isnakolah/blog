@@ -1,10 +1,9 @@
 @using Domain.Entities
+@inject NavigationManager NavigationManager;
 
 <div class="sm:flex md:space-x-10">
-    <div class="cursor-pointer md:flex-1 lg:w-96 lg:flex-none">
-        <a href="articles/@Article.Slug">
-            <img src="@Article.FeaturedImageUri?.ToString()" alt="@Article.Title" class="rounded-lg max-w-full h-auto "/>
-        </a>
+    <div class="cursor-pointer md:flex-1 lg:w-96 lg:flex-none" onclick="@NavigateToArticle">
+        <img src="@Article.FeaturedImageUri?.ToString()" alt="@Article.Title" class="rounded-lg max-w-full h-auto"/>
     </div>
 
     <div class="md:flex-1 flex flex-col justify-between md:justify-center pb-1 space-y-4">
@@ -13,18 +12,17 @@
         </div>
  
         <div>
-            <h3 class="md:transition md:duration-700 cursor-pointer md:hover:text-blue-700 text-2xl md:text-4xl font-black pb-4 leading-tight">
-                <a href="articles/@Article.Slug">
-                    @Article.Title
-                </a>
+            <h3 class="md:transition md:duration-700 cursor-pointer md:hover:text-blue-700 text-2xl md:text-4xl font-black pb-4 leading-tight" onclick="@NavigateToArticle">
+                @Article.Title
             </h3>
             <p class="text-gray-500 text-sm leading-relaxed">
                 @Article.Excerpt
-                <span class="text-sm text-blue-700 cursor-pointer">
-                    <a href="articles/@Article.Slug"> Read more...</a>
+                <span class="text-sm text-blue-700 cursor-pointer" onclick="@NavigateToArticle">
+                     Read more...
                 </span>
             </p>
         </div>
+
         <AuthorSummary
             ProfilePhotoUri="@Article.Author.Person.ProfilePhotoUri"
             ProfilePhotoAlt="@GetFullName"
@@ -49,4 +47,5 @@
 
     private string GetFullName => Article.Author.Person.FirstName + " " + Article.Author.Person.LastName;
 
+    private void NavigateToArticle() => NavigationManager.NavigateTo($"articles/{Article.Slug}");
 }
