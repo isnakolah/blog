@@ -16,6 +16,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Using Include="Application.Common.Interfaces" />
+        <Using Include="Blog.Application.Common.Interfaces" />
     </ItemGroup>
 </Project>
