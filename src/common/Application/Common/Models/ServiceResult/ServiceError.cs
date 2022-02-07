@@ -1,4 +1,4 @@
-namespace Application.Common.Models.ServiceResult;
+namespace Blog.Application.Common.Models.ServiceResult;
 
 public record ServiceError(string Message, int Code)
 {

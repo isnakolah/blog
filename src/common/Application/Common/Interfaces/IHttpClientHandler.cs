@@ -1,7 +1,8 @@
 using System.Net.Http.Headers;
+using Blog.Application.Common.Models.ServiceResult;
 using Domain.Enums;
 
-namespace Application.Common.Interfaces;
+namespace Blog.Application.Common.Interfaces;
 
 public interface IHttpClientHandler
 {

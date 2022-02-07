@@ -1,6 +1,6 @@
 using Domain.Common.Entities;
 
-namespace Application.Common.Interfaces;
+namespace Blog.Application.Common.Interfaces;
 
 public interface IDomainEventService
 {

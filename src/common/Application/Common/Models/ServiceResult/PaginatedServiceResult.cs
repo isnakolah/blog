@@ -1,4 +1,4 @@
-namespace Application.Common.Models.ServiceResult;
+namespace Blog.Application.Common.Models.ServiceResult;
 
 public record PaginatedServiceResult<T> : ServiceResult<IEnumerable<T>>
 {

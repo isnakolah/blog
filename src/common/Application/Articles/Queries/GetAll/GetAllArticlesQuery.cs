@@ -1,6 +1,9 @@
+using Blog.Application.Common.Interfaces;
+using Blog.Application.Common.Models;
+using Blog.Application.Common.Models.ServiceResult;
 using Domain.Entities;
 
-namespace Application.Articles.Queries.GetAll;
+namespace Blog.Application.Articles.Queries.GetAll;
 
 public sealed record GetAllArticlesQuery(PaginationFilter PaginationFilter) : IRequestPaginatedWrapper<Article>;
 

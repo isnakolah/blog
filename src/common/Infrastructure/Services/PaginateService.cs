@@ -1,5 +1,5 @@
-using Application.Common.Models;
-using Application.Common.Models.ServiceResult;
+using Blog.Application.Common.Models;
+using Blog.Application.Common.Models.ServiceResult;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Services;
