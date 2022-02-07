@@ -1,0 +1,15 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>ZeBlog</PageTitle>
+
+<section class="bg-gray-100 min-h-full">
+    <section class="sidebar">
+        <NavMenu/>
+    </section>
+
+    <main class="container mx-auto pt-3 px-6 lg:px-12 xl:w-2/3">
+        <ErrorBoundary>
+            @Body
+        </ErrorBoundary>
+    </main>
+</section>
