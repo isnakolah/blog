@@ -2,7 +2,7 @@
     
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <RootNamespace>Blog.Application</RootNamespace>
+        <RootNamespace>Common.Application</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
@@ -12,9 +12,9 @@
     </ItemGroup>
     
     <ItemGroup>
-        <Using Include="Blog.Application.Common.Models.ServiceResult" />
-        <Using Include="Blog.Application.Common.Models" />
-        <Using Include="Blog.Application.Common.Interfaces" />
+        <Using Include="Common.Application.Common.Models.ServiceResult" />
+        <Using Include="Common.Application.Common.Models" />
+        <Using Include="Common.Application.Common.Interfaces" />
     </ItemGroup>
     
     <ItemGroup>

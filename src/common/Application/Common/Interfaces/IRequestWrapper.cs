@@ -1,7 +1,7 @@
-using Blog.Application.Common.Models.ServiceResult;
+using Common.Application.Common.Models.ServiceResult;
 using MediatR;
 
-namespace Blog.Application.Common.Interfaces;
+namespace Common.Application.Common.Interfaces;
 
 public interface IRequestWrapper : IRequest<ServiceResult>
 {

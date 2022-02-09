@@ -1,4 +1,4 @@
-namespace Blog.Application.Common.Models.ServiceResult;
+namespace Common.Application.Common.Models.ServiceResult;
 
 public record ServiceResult
 {

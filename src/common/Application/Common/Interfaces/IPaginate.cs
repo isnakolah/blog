@@ -1,7 +1,7 @@
-using Blog.Application.Common.Models;
-using Blog.Application.Common.Models.ServiceResult;
+using Common.Application.Common.Models;
+using Common.Application.Common.Models.ServiceResult;
 
-namespace Blog.Application.Common.Interfaces;
+namespace Common.Application.Common.Interfaces;
 
 public interface IPaginate
 {

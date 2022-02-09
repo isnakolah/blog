@@ -1,6 +1,6 @@
-using Blog.Application.Common.Models;
+using Common.Application.Common.Models;
 
-namespace Blog.Application.Common.Interfaces;
+namespace Common.Application.Common.Interfaces;
 
 public interface IEmailService
 {

@@ -1,4 +1,4 @@
-namespace Blog.Application.Common.Interfaces;
+namespace Common.Application.Common.Interfaces;
 
 public interface IDateTime
 {

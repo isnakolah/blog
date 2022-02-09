@@ -1,4 +1,4 @@
-namespace Blog.Application.Common.Models;
+namespace Common.Application.Common.Models;
 
 public record PaginationFilter
 {

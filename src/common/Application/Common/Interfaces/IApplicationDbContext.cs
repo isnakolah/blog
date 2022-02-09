@@ -1,7 +1,7 @@
-using Domain.Entities;
+using Common.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Blog.Application.Common.Interfaces;
+namespace Common.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {

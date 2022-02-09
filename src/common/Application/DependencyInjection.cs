@@ -2,7 +2,7 @@ using System.Reflection;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Blog.Application;
+namespace Common.Application;
 
 public static class DependencyInjection
 {
