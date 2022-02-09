@@ -1,4 +1,4 @@
-namespace Domain.Entities;
+namespace Common.Domain.Entities;
 
 public sealed record Like : AuditableEntity
 {

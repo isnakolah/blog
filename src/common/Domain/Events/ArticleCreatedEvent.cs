@@ -1,3 +1,3 @@
-namespace Domain.Events;
+namespace Common.Domain.Events;
 
 public record ArticleCreatedEvent(Article Article) : DomainEvent;

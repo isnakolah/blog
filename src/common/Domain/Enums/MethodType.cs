@@ -1,4 +1,4 @@
-namespace Domain.Enums;
+namespace Common.Domain.Enums;
 
 public enum MethodType
 {

@@ -1,6 +1,6 @@
-using Domain.Events;
+using Common.Domain.Events;
 
-namespace Domain.Entities;
+namespace Common.Domain.Entities;
 
 public sealed record Author : AuditableEntity, IHasDomainEvent
 {
@@ -15,6 +15,7 @@ public sealed record Author : AuditableEntity, IHasDomainEvent
     public void Activate()
     {
         IsActivated = true;
+
         DomainEvents.Add(new AuthorCreatedEvent(this));
     }
 }

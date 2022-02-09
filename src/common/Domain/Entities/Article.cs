@@ -1,4 +1,6 @@
-namespace Domain.Entities;
+using Common.Domain.Events;
+
+namespace Common.Domain.Entities;
 
 public sealed record Article : AuditableEntity, IHasDomainEvent
 {

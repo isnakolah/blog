@@ -1,4 +1,4 @@
-namespace Domain.Common.Entities;
+namespace Common.Domain.Common.Entities;
 
 public abstract record DomainEvent
 {

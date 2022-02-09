@@ -1,4 +1,4 @@
-namespace Domain.Common.Interfaces;
+namespace Common.Domain.Common.Interfaces;
 
 public interface IHasDomainEvent
 {
