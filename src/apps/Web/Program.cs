@@ -1,4 +1,4 @@
-using Blog.Application;
+using Common.Application;
 using Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
