@@ -1,4 +1,4 @@
-using Blog.Application.Common.Interfaces;
+using Common.Application.Common.Interfaces;
 
 namespace Infrastructure.Services;
 

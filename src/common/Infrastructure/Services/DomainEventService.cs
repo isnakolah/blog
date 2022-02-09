@@ -1,5 +1,5 @@
-using Blog.Application.Common.Models;
-using Domain.Common.Entities;
+using Common.Application.Common.Models;
+using Common.Domain.Common.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
 

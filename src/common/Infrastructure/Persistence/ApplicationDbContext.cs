@@ -1,7 +1,7 @@
 using System.Reflection;
-using Domain.Common.Entities;
-using Domain.Common.Interfaces;
-using Domain.Entities;
+using Common.Domain.Common.Entities;
+using Common.Domain.Common.Interfaces;
+using Common.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence;
