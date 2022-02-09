@@ -1,4 +1,4 @@
-@using Domain.Entities
+@using Common.Domain.Entities
 
 <div>
     <div class="flex align-center justify-center pb-5 md:pb-12">
@@ -33,12 +33,13 @@
                 }
             }
         },
-        Categories = new List<Category>()
-        {
-            new() {Id = Guid.NewGuid(), Name = "Business"},
-            new() {Id = Guid.NewGuid(), Name = "Travel"}
-        },
         CreatedOn = DateTime.Now
     };
+
+    protected override void OnInitialized()
+    {
+        Article.AddCategory(new Category {Id = Guid.NewGuid(), Name = "Business"});
+        Article.AddCategory(new Category {Id = Guid.NewGuid(), Name = "Travel"});
+    }
 
 }

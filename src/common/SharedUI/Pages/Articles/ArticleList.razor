@@ -1,4 +1,4 @@
-@using Domain.Entities
+@using Common.Domain.Entities
 
 @if (articles is null)
 {
@@ -45,12 +45,13 @@ else
                         }
                     }
                 },
-                Categories = new List<Category>
-                {
-                    new() {Id = Guid.NewGuid(), Name = "Business"},
-                    new() {Id = Guid.NewGuid(), Name = "Travel"}
-                },
                 CreatedOn = DateTime.Now
+            });
+            
+            articles.ForEach(article =>
+            {
+                article.AddCategory(new Category {Id = Guid.NewGuid(), Name = "Business"});
+                article.AddCategory(new Category {Id = Guid.NewGuid(), Name = "Travel"});
             });
         }
 
