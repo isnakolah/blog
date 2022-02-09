@@ -18,4 +18,27 @@ public sealed record Article : AuditableEntity, IHasDomainEvent
     public ICollection<Comment>? Comments { get; private set; } 
 
     public List<DomainEvent> DomainEvents { get; init; } = default!;
+
+    public void AddComment(Comment comment)
+    {
+        Comments ??= new List<Comment>();
+
+        Comments.Add(comment);
+
+        DomainEvents.Add(new ArticleCommentedEvent(this, comment));
+    }
+
+    public void AddLike(Like like)
+    {
+        Likes.Add(like);
+
+        DomainEvents.Add(new ArticleLikedEvent(this, like));
+    }
+
+    public void AddCategory(Category category)
+    {
+        category.DomainEvents.Add(new ArticleAddedToCategoryEvent(category, this));
+        
+        Categories.Add(category);
+    }
 }
