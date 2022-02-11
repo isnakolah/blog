@@ -10,7 +10,7 @@ public sealed record Author : AuditableEntity, IHasDomainEvent
     public Person Person { get; set; } = default!;
     public ICollection<Article>? Articles { get; set; }
 
-    public List<DomainEvent> DomainEvents { get; init; } = default!;
+    public List<DomainEvent> DomainEvents { get; init; } = new();
 
     public void Activate()
     {

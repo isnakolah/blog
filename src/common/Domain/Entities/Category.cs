@@ -8,5 +8,5 @@ public record Category : AuditableEntity, IHasDomainEvent
 
     public ICollection<Article>? Articles { get; set; }
 
-    public List<DomainEvent> DomainEvents { get; init; } = default!;
+    public List<DomainEvent> DomainEvents { get; init; } = new();
 }

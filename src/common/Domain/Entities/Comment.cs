@@ -11,7 +11,7 @@ public sealed record Comment : AuditableEntity, IHasDomainEvent
     public Article Article { get; set; } = default!;
     public Person Person { get; set; } = default!;
 
-    public List<DomainEvent> DomainEvents { get; init; } = default!;
+    public List<DomainEvent> DomainEvents { get; init; } = new();
 
     public void Disable()
     {

@@ -13,11 +13,11 @@ public sealed record Article : AuditableEntity, IHasDomainEvent
     public DateTime ReleaseDate { get; set; }
 
     public Author Author { get; set; } = default!;
-    public ICollection<Like> Likes { get; private set; } = default!;
-    public ICollection<Category> Categories { get; private set; } = default!;
+    public ICollection<Like> Likes { get; private set; } = new List<Like>();
+    public ICollection<Category> Categories { get; private set; } = new List<Category>();
     public ICollection<Comment>? Comments { get; private set; } 
 
-    public List<DomainEvent> DomainEvents { get; init; } = default!;
+    public List<DomainEvent> DomainEvents { get; init; } = new();
 
     public void AddComment(Comment comment)
     {

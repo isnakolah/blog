@@ -14,5 +14,5 @@ public sealed record Person : AuditableEntity, IHasDomainEvent
     public ICollection<Like>? Likes { get; set; }
     public ICollection<Comment>? Comments { get; set; }
 
-    public List<DomainEvent> DomainEvents { get; init; } = default!;
+    public List<DomainEvent> DomainEvents { get; init; } = new()!;
 }
