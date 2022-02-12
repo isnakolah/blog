@@ -1,13 +1,14 @@
 @using Common.Domain.Entities
+@using Common.Application.Articles.Queries.DTOs
 
 <div class="sm:flex md:space-x-10">
     <div class="cursor-pointer md:flex-1 lg:w-96 lg:flex-none">
-        <img src="@Article.FeaturedImageUri?.ToString()" alt="@Article.Title" class="rounded-lg max-w-full h-auto"/>
+        <img src="@Article.FeaturedImageUri" alt="@Article.Title" class="rounded-lg max-w-full h-auto"/>
     </div>
 
     <div class="md:flex-1 flex flex-col justify-between md:justify-center pb-1 space-y-4">
         <div class="pt-4 md:pt-0">
-            <CategoryAndDate Categories="@categories" Date="@Article.CreatedOn"/>
+            <CategoryAndDate Categories="@Article.Categories" Date="@Article.CreatedOn"/>
         </div>
 
         <div>
@@ -22,27 +23,23 @@
         </div>
 
         <AuthorSummary
-            ProfilePhotoUri="@Article.Author.Person.ProfilePhotoUri"
-            ProfilePhotoAlt="@GetFullName"
-            AuthorName="@GetFullName"
-            AuthorOccupation="@Article.Author.Person.Occupation?.Name"/>
+            ProfilePhotoUri="@Article.Author.ProfilePhotoUrl"
+            ProfilePhotoAlt="@Article.Author.FullName"
+            AuthorName="@Article.Author.FullName"
+            AuthorOccupation="@Article.Author.OccupationName"/>
 
     </div>
 </div>
 
 @code {
 
-    private IEnumerable<(string Name, string Slug)>? categories;
     private Func<string> Endpoint = () => string.Empty;
 
     [Parameter, EditorRequired]
-    public Article Article { get; init; } = new();
+    public ArticleGetDTO Article { get; init; } = new();
 
     protected override void OnParametersSet()
     {
-        categories = Article.Categories.Select(x => (x.Name, x.Slug)).ToArray();
         Endpoint = () => $"articles/{Article.Slug}";
     }
-
-    private string GetFullName => $"{Article.Author.Person.FirstName} {Article.Author.Person.LastName}";
 }

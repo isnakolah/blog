@@ -1,5 +1,5 @@
-@using Common.Domain.Entities
 @using Common.Application.Articles.Queries.GetTrending
+@using Common.Application.Articles.Queries.DTOs
 
 <div>
     <div class="flex align-center justify-center pb-5 md:pb-12">
@@ -13,7 +13,7 @@
 
 @code {
 
-    private Article Article = default!;
+    private ArticleGetDTO Article = new();
 
     protected override async Task OnInitializedAsync()
     {

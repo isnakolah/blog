@@ -1,5 +1,5 @@
-@using Common.Domain.Entities
 @using Common.Application.Articles.Queries.GetAll
+@using Common.Application.Articles.Queries.DTOs
 
 @inherits PaginationBase
 
@@ -19,13 +19,13 @@ else
 
 @code {
 
-    private IEnumerable<Article> articles = Array.Empty<Article>();
+    private IEnumerable<ArticleGetDTO> articles = Array.Empty<ArticleGetDTO>();
 
     protected override async Task OnInitializedAsync()
     {
         var newArticles = await Mediator.Send(new GetAllArticlesQuery(PaginationFilter));
 
-        articles = newArticles.Data ?? Array.Empty<Article>();
+        articles = newArticles.Data ?? Array.Empty<ArticleGetDTO>();
     }
 
 }
