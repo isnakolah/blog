@@ -1,3 +1,4 @@
+@using Common.Application.Categories.Queries.DTOs
 @inject NavigationManager NavigationManager
 
 <p class="text-sm flex flex-col-reverse space-y-3 md:flex-row md:space-y-0">
@@ -24,7 +25,7 @@
     private int categoryTotalCount = 0;
 
     [Parameter]
-    public IEnumerable<(string Name, string Slug)>? Categories { get; init; }
+    public IEnumerable<CategoryGetDTO>? Categories { get; init; }
 
     [Parameter]
     public DateTime Date { get; set; }
