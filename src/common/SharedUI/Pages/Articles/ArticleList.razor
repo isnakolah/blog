@@ -1,6 +1,9 @@
 @using Common.Domain.Entities
+@using Common.Application.Articles.Queries.GetAll
 
-@if (articles is null)
+@inherits PaginationBase
+
+@if (!articles.Any())
 {
     <p>There are no articles</p>
 }
@@ -9,53 +12,20 @@ else
     <div class="grid sm:grid-cols-1 md:grid-cols-3 md:gap-12 lg:grid-cols-3">
         @foreach (var article in articles)
         {
-            <ArticleListCard Article=@article/>
+            <ArticleListCard Article="@article"/>
         }
     </div>
 }
 
 @code {
 
-    private List<Article>? articles;
+    private IEnumerable<Article> articles = Array.Empty<Article>();
 
-    protected override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
-        articles ??= new List<Article>();
+        var newArticles = await Mediator.Send(new GetAllArticlesQuery(PaginationFilter));
 
-        foreach (var _ in Enumerable.Range(0, 6))
-        {
-            articles.Add(new Article
-            {
-                Id = Guid.NewGuid(),
-                Title = "Your most unhappy customers are your greatest source of learning.",
-                Excerpt = "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
-                FeaturedImageUri = new Uri("https://preview.colorlib.com/theme/magdesign/images/ximg_2.jpg.pagespeed.ic.fbbBEgB1Q6.webp"),
-                Author = new Author
-                {
-                    Id = Guid.NewGuid(),
-                    Person = new Person
-                    {
-                        Id = Guid.NewGuid(),
-                        FirstName = "Sergy",
-                        LastName = "Campbell",
-                        Occupation = new Occupation
-                        {  
-                            Id = Guid.NewGuid(),
-                            Name = "CEO and Founder"
-                        }
-                    }
-                },
-                CreatedOn = DateTime.Now
-            });
-            
-            articles.ForEach(article =>
-            {
-                article.AddCategory(new Category {Id = Guid.NewGuid(), Name = "Business"});
-                article.AddCategory(new Category {Id = Guid.NewGuid(), Name = "Travel"});
-            });
-        }
-
-        return Task.CompletedTask;
+        articles = newArticles.Data ?? Array.Empty<Article>();
     }
 
 }

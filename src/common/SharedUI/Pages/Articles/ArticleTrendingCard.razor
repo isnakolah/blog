@@ -1,8 +1,7 @@
 @using Common.Domain.Entities
-@inject NavigationManager NavigationManager;
 
 <div class="sm:flex md:space-x-10">
-    <div class="cursor-pointer md:flex-1 lg:w-96 lg:flex-none" onclick="@NavigateToArticle">
+    <div class="cursor-pointer md:flex-1 lg:w-96 lg:flex-none">
         <img src="@Article.FeaturedImageUri?.ToString()" alt="@Article.Title" class="rounded-lg max-w-full h-auto"/>
     </div>
 
@@ -10,16 +9,15 @@
         <div class="pt-4 md:pt-0">
             <CategoryAndDate Categories="@categories" Date="@Article.CreatedOn"/>
         </div>
- 
+
         <div>
-            <h3 class="md:transition md:duration-700 cursor-pointer md:hover:text-blue-700 text-2xl md:text-4xl font-black pb-4 leading-tight" onclick="@NavigateToArticle">
-                @Article.Title
+            <h3 class="md:transition md:duration-700 cursor-pointer md:hover:text-blue-700 text-2xl md:text-4xl font-black pb-4 leading-tight">
+                <Link Url="@Endpoint" DisplayText="@Article.Title"/>
             </h3>
+
             <p class="text-gray-500 text-sm leading-relaxed">
                 @Article.Excerpt
-                <span class="text-sm text-blue-700 cursor-pointer" onclick="@NavigateToArticle">
-                     Read more...
-                </span>
+                <span class="text-sm text-blue-700"><Link Url="@Endpoint" DisplayText=" Read more..."/></span>
             </p>
         </div>
 
@@ -32,20 +30,19 @@
     </div>
 </div>
 
-
 @code {
 
-    private (string Name, string Slug)[]? categories;
+    private IEnumerable<(string Name, string Slug)>? categories;
+    private Func<string> Endpoint = () => string.Empty;
 
     [Parameter, EditorRequired]
-    public Article Article { get; init; } = default!;
+    public Article Article { get; init; } = new();
 
-    protected override void OnInitialized()
+    protected override void OnParametersSet()
     {
         categories = Article.Categories.Select(x => (x.Name, x.Slug)).ToArray();
+        Endpoint = () => $"articles/{Article.Slug}";
     }
 
-    private string GetFullName => Article.Author.Person.FirstName + " " + Article.Author.Person.LastName;
-
-    private void NavigateToArticle() => NavigationManager.NavigateTo($"articles/{Article.Slug}");
+    private string GetFullName => $"{Article.Author.Person.FirstName} {Article.Author.Person.LastName}";
 }

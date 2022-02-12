@@ -1,0 +1,13 @@
+@inject NavigationManager _navigationManager
+
+<span class="pointer" onclick="@NavigateToUrl">@DisplayText</span>
+
+@code {
+    [Parameter, EditorRequired]
+    public Func<string> Url { get; set; } = () => string.Empty;
+
+    [Parameter, EditorRequired]
+    public string DisplayText { get; set; } = string.Empty;
+
+    private void NavigateToUrl() => _navigationManager.NavigateTo(Url.Invoke());
+}

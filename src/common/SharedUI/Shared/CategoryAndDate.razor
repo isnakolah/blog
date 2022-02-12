@@ -7,7 +7,7 @@
             @foreach (var (category, index) in Categories.Select((value, i) => (value, i)))
             {
                 <span class="flex-inline cursor-pointer text-gray-100 border border-solid border-green-300 p-2 mr-1 rounded-full bg-blue-400 md:flex-none md:rounded-none md:hover:text-blue-600 md:border-none md:p-0 md:bg-transparent md:mr-0 md:text-black" onclick="@(() => NavigateToCategory(category.Slug))">@category.Name</span>
-                <span class="sm-hide md:pr-1">@(index != Categories.Length - 1 ? ", " : "")</span>
+                <span class="sm-hide md:pr-1">@(index != categoryTotalCount ? ", " : "")</span>
             }
             <span class="sm-hide px-1">@(date is not null ? "-" : "")</span>
         </span>
@@ -21,16 +21,21 @@
 @code {
 
     private string? date;
+    private int categoryTotalCount = 0;
 
     [Parameter]
-    public (string Name, string Slug)[]? Categories { get; init; }
+    public IEnumerable<(string Name, string Slug)>? Categories { get; init; }
 
     [Parameter]
     public DateTime Date { get; set; }
 
-    protected override void OnInitialized()
+    protected override Task OnInitializedAsync()
     {
+        categoryTotalCount = Categories?.Count() ?? 0;
+
         date = string.Join(", ", Date.ToLongDateString().Split(", ").Take(1..));
+
+        return Task.CompletedTask;
     }
 
     private void NavigateToCategory(string categorySlug) => NavigationManager.NavigateTo($"categories/{categorySlug}");
