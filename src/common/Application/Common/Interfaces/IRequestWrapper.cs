@@ -25,7 +25,7 @@ public interface IRequestPaginatedWrapper<TResponse> : IRequest<PaginatedService
 {
 }
 
-public interface IRequestPaginatedHandlerWrapper<in TRequest, TResponse> : IRequestHandler<TRequest, PaginatedServiceResult<TResponse>>
+public interface IRequestHandlerPaginatedWrapper<in TRequest, TResponse> : IRequestHandler<TRequest, PaginatedServiceResult<TResponse>>
     where TRequest : IRequestPaginatedWrapper<TResponse>
 {
 }
