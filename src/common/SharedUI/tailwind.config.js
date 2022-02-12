@@ -1,6 +1,9 @@
 module.exports = {
-  purge: [],
-  darkMode: false,
+  content: [
+    "./Pages/**/*.{razor,cshtml}",
+    "./Shared/**/*.{razor,cshtml}"
+  ],
+  darkMode: true,
   theme: {
     extend: {}
   },
