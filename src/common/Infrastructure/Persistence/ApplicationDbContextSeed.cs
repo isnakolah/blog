@@ -48,6 +48,7 @@ public static class ApplicationDbContextSeed
                         Id = Guid.NewGuid(),
                         FirstName = "Sergy",
                         LastName = "Campbell",
+                        ProfilePhotoUri = new Uri("https://preview.colorlib.com/theme/magdesign/images/xperson_1.jpg.pagespeed.ic.Zebptmx_f8.webp"),
                         Occupation = new Occupation
                         {
                             Id = Guid.NewGuid(),
