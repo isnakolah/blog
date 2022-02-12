@@ -2,12 +2,12 @@ namespace Common.Application.Common.Models.ServiceResult;
 
 public record PaginatedServiceResult<T> : ServiceResult<IEnumerable<T>>
 {
-    public int PageNumber { get; }
-    public int PageSize { get; }
-    public int TotalPages { get; }
-    public int TotalRecords { get; }
-    public DateOnly From { get; }
-    public DateOnly To { get; }
+    public int PageNumber { get; init; }
+    public int PageSize { get; init; }
+    public int TotalPages { get; init; }
+    public int TotalRecords { get; init; }
+    public DateOnly From { get; init; }  
+    public DateOnly To { get; init; }
 
     public PaginatedServiceResult()
     {

@@ -3,7 +3,7 @@ namespace Common.Application.Common.Models.ServiceResult;
 public record ServiceResult
 {
     public bool Succeeded => Error is null;
-    public ServiceError? Error { get; set; }
+    public ServiceError? Error { get; init; }
 
     public ServiceResult()
     {
@@ -66,5 +66,5 @@ public record ServiceResult<T> : ServiceResult
         Data = data;
     }
 
-    public T? Data { get; }
+    public T? Data { get; init; }
 }

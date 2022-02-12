@@ -1,5 +1,6 @@
 using Common.Application;
 using Infrastructure;
+using Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,5 +22,6 @@ app.UseStaticFiles();
 app.UseRouting();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+app.AddDatabaseSeed();
 
 app.Run();
