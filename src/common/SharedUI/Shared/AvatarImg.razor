@@ -1,5 +1,5 @@
 <div style="height: @Size.ToString()px; width: @Size.ToString()px">
-    @if (Src is not null)
+    @if (!string.IsNullOrWhiteSpace(Src))
     {
         <img src="@Src" alt="@Alt" class="@Classes"/>
     }
@@ -12,13 +12,13 @@
 
 @code {
     private const string Classes = $"align-middle rounded-full h-full";
-    
-    [Parameter]
-    public Uri? Src { get; set; }
+
+    [Parameter, EditorRequired]
+    public string Src { get; init; } = default!;
 
     [Parameter]
-    public string? Alt { get; set; }
+    public string? Alt { get; init; }
     
     [Parameter, EditorRequired]
-    public int Size { get; set; }
+    public int Size { get; init; }
 }
