@@ -5,7 +5,7 @@ public sealed record Person : AuditableEntity, IHasDomainEvent
     public Guid Id { get; init; }
     public string FirstName { get; set; } = default!;
     public string LastName { get; set; } = default!;
-    public string? OtherNames { get; set; }
+    public IEnumerable<string>? OtherNames { get; set; }
     public Uri? ProfilePhotoUri { get; set; }
     
     public Sex? Sex { get; set; }
