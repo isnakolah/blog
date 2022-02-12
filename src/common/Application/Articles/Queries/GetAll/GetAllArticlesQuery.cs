@@ -1,13 +1,10 @@
-using Common.Application.Common.Interfaces;
-using Common.Application.Common.Models;
-using Common.Application.Common.Models.ServiceResult;
 using Common.Domain.Entities;
 
 namespace Common.Application.Articles.Queries.GetAll;
 
 public sealed record GetAllArticlesQuery(PaginationFilter PaginationFilter) : IRequestPaginatedWrapper<Article>;
 
-public class GetAllArticlesQueryHandler : IRequestPaginatedHandlerWrapper<GetAllArticlesQuery, Article>
+public class GetAllArticlesQueryHandler : IRequestHandlerPaginatedWrapper<GetAllArticlesQuery, Article>
 {
     private readonly IApplicationDbContext _context;
     private readonly IPaginate _paginate;
