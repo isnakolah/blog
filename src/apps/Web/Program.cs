@@ -27,7 +27,7 @@ app.AddDatabaseSeed();
 
 if (app.Environment.IsDevelopment())
 {
-   app.AddTailwindWatch();
+   app.AddTailwindJitCompiler();
 }
 
 app.Run();

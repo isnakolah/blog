@@ -5,7 +5,7 @@ namespace SharedUI;
 
 public static class DependencyInjection
 {
-    public static void AddTailwindWatch(this IApplicationBuilder builder)
+    public static void AddTailwindJitCompiler(this IApplicationBuilder builder)
     {
         var srcDirectory = Directory.GetParent(Environment.CurrentDirectory)!.Parent;
 
