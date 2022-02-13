@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "buildcss:dev": "postcss ./Styles/app.css -o ./wwwroot/css/app.css"
+    "buildcss": "postcss ./Styles/tailwind.css -o ./wwwroot/css/tailwind.css",
+    "buildcss:watch": "cross-env NODE_ENV=development ./node_modules/tailwindcss/lib/cli.js -i ./Styles/tailwind.css -o ./wwwroot/css/tailwind.css --watch"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
