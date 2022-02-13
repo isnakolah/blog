@@ -1,8 +1,6 @@
 module.exports = {
-  content: [
-    "./Pages/**/*.{razor,cshtml}",
-    "./Shared/**/*.{razor,cshtml}"
-  ],
+  mode: 'jit',
+  content: [ "**/*.razor", "**/*.cshtml", "**/*.html" ],
   darkMode: true,
   theme: {
     extend: {}
