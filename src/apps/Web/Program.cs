@@ -1,6 +1,7 @@
 using Common.Application;
 using Infrastructure;
 using Infrastructure.Persistence;
+using SharedUI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,5 +24,10 @@ app.UseRouting();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 app.AddDatabaseSeed();
+
+if (app.Environment.IsDevelopment())
+{
+   app.AddTailwindWatch();
+}
 
 app.Run();
