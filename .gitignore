@@ -342,4 +342,4 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
-/src/common/SharedUI/wwwroot/css/app.css
+/src/common/SharedUI/wwwroot/css/tailwind.css
