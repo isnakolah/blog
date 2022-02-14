@@ -1,7 +1,7 @@
 using AutoMapper;
 using Common.Application.Authors.Queries.DTOs;
 using Common.Application.Categories.Queries.DTOs;
-using Common.Application.Common;
+using Common.Application.Common.Extensions;
 using Common.Application.Common.Mappings;
 using Common.Domain.Entities;
 

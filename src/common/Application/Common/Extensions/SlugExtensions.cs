@@ -1,4 +1,4 @@
-namespace Common.Application.Common;
+namespace Common.Application.Common.Extensions;
 
 internal static class SlugExtensions
 {

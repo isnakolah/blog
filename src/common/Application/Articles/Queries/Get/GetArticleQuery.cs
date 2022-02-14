@@ -1,7 +1,7 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Common.Application.Articles.Queries.DTOs;
-using Common.Application.Common;
+using Common.Application.Common.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Common.Application.Articles.Queries.Get;
