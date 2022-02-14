@@ -1,6 +1,7 @@
 using AutoMapper;
 using Common.Application.Authors.Queries.DTOs;
 using Common.Application.Categories.Queries.DTOs;
+using Common.Application.Common;
 using Common.Application.Common.Mappings;
 using Common.Domain.Entities;
 
@@ -22,6 +23,6 @@ public record ArticleGetDTO : IMapFrom<Article>
     {
         profile.CreateMap<Article, ArticleGetDTO>()
             .ForMember(dest => dest.ReleaseDate, opt => opt.MapFrom(src => src.ReleaseDate.ToShortDateString()))
-            .ForMember(dest => dest.Slug, opt => opt.MapFrom(src => string.Join("-", src.Title.ToLower().Split(" ", StringSplitOptions.TrimEntries))));
+            .ForMember(dest => dest.Slug, opt => opt.MapFrom(src => src.Title.CreateSlug()));
     }
 }

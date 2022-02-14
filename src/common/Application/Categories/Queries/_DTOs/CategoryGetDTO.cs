@@ -1,4 +1,5 @@
 using AutoMapper;
+using Common.Application.Common;
 using Common.Application.Common.Mappings;
 using Common.Domain.Entities;
 
@@ -13,6 +14,6 @@ public record CategoryGetDTO : IMapFrom<Category>
     public void Mapping(Profile profile)
     {
         profile.CreateMap<Category, CategoryGetDTO>()
-            .ForMember(dest => dest.Slug, opt => opt.MapFrom(src => string.Join("-", src.Name.ToLower().Split(" ", StringSplitOptions.TrimEntries))));
+            .ForMember(dest => dest.Slug, opt => opt.MapFrom(src => src.Name.CreateSlug()));
     }
 }
