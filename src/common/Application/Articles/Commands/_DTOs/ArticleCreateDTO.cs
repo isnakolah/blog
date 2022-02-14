@@ -7,15 +7,19 @@ namespace Common.Application.Articles.Commands.DTOs;
 
 public class ArticleCreateDTO : MapTo<Article>, IMapTo<Article>
 {
+    public ArticleCreateDTO()
+    {
+    }
+    
     public ArticleCreateDTO(string title, string content, string excerpt, Guid authorId, DateTime releaseDate, string? featuredImageUri)
     {
         (Title, Content, Excerpt, AuthorID, ReleaseDate, FeaturedImageUri) =
             (title, content, excerpt, authorId, releaseDate, featuredImageUri);
     }
 
-    public string Title { get; init; }
-    public string Content { get; init; }
-    public string Excerpt { get; init; }
+    public string Title { get; init; } = string.Empty;
+    public string Content { get; init; } = string.Empty;
+    public string Excerpt { get; init; } = string.Empty;
     public string? FeaturedImageUri { get; init; }
     public Guid AuthorID { get; init; }
     public DateTime ReleaseDate { get; init; }
