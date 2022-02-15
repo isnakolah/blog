@@ -21,9 +21,12 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
+        
+      - name: View directory
+        run: ls -a
 
       - name: dotnet publish
-        run: dotnet publish --project ./src/app/Web/Web.csproj -c Release -o ${{env.DOTNET_ROOT}}/app
+        run: dotnet publish --project ${{env.DOTNET_ROOT}}/src/app/Web/Web.csproj -c Release -o ${{env.DOTNET_ROOT}}/app
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
