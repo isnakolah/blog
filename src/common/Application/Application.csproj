@@ -15,6 +15,9 @@
         <Using Include="Common.Application.Common.Models.ServiceResult" />
         <Using Include="Common.Application.Common.Models" />
         <Using Include="Common.Application.Common.Interfaces" />
+        <Using Include="AutoMapper" />
+        <Using Include="AutoMapper.QueryableExtensions" />
+        <Using Include="MediatR" />
     </ItemGroup>
     
     <ItemGroup>

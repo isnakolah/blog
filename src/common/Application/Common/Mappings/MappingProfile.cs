@@ -1,5 +1,4 @@
 using System.Reflection;
-using AutoMapper;
 
 namespace Common.Application.Common.Mappings;
 
