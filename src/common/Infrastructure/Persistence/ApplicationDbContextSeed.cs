@@ -18,6 +18,8 @@ public static class ApplicationDbContextSeed
             var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
 
             SeedArticlesAsync(context).GetAwaiter().GetResult();
+
+            SeedCategoriesAsync(context).GetAwaiter().GetResult();
         }
         catch (Exception ex)
         {
@@ -31,11 +33,13 @@ public static class ApplicationDbContextSeed
 
     private static async Task SeedArticlesAsync(ApplicationDbContext context)
     {
+        var businessCategory = new Category {Name = "Business"};
+        var travelCategory = new Category {Name = "Travel"};
+        
         context.Articles.AddRange(Enumerable.Range(0, 6).Select(_ =>
         {
             var article =  new Article
             {
-                Id = Guid.NewGuid(),
                 Title = $"Your most unhappy customers are your greatest source of learning {Random.Shared.Next(300).ToString()}",
                 Excerpt = "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
                 FeaturedImageUri = new Uri("https://preview.colorlib.com/theme/magdesign/images/ximg_2.jpg.pagespeed.ic.fbbBEgB1Q6.webp"),
@@ -59,11 +63,22 @@ public static class ApplicationDbContextSeed
                 CreatedOn = DateTime.Now
             };
 
-            article.AddCategory(new Category {Id = Guid.NewGuid(), Name = "Business"});
-            article.AddCategory(new Category {Id = Guid.NewGuid(), Name = "Travel"});
+            article.AddCategory(businessCategory);
+            article.AddCategory(travelCategory);
 
             return article;
         }));
+
+        await context.SaveChangesAsync();
+    }
+
+    private static async Task SeedCategoriesAsync(ApplicationDbContext context)
+    {
+        context.Categories.AddRange(
+            new Category {Name = "Science"},
+            new Category {Name = "Species"},
+            new Category {Name = "Computer Science"}
+        );
 
         await context.SaveChangesAsync();
     }
