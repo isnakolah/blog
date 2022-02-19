@@ -2,14 +2,22 @@
 
 @using Common.Application.Articles.Commands.DTOs
 @using Common.Application.Articles.Commands.Create
+@using Common.Application.Categories.Queries.DTOs
+@using Common.Application.Categories.Queries.Get
+@using Common.Application.Categories.Queries.Search
+@using Common.Application.Common.Models
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Logging
 
+@inject ILogger<ArticleCreate> _logger
+@inject IWebHostEnvironment _environment
 @inject NavigationManager _navigationManager;
 
 <div class="mt-4 mx-auto w-full max-w-lg">
     <div class="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
         <form onsubmit="@CreateArticle" class="mb-0 space-y-6" method="post">
             <div>
-                <label for="title" class="block text-sm font-medium text-gray-500">
+                <label for="title" class="block text-sm font-medium text-slate-500">
                     Article Title
                 </label>
                 <div class="mt-1">
@@ -18,7 +26,7 @@
             </div>
 
             <div>
-                <label for="excerpt" class="block text-sm font-medium text-gray-700">
+                <label for="excerpt" class="block text-sm font-medium text-slate-500">
                     Excerpt
                 </label>
                 <div class="mt-1">
@@ -27,54 +35,185 @@
             </div>
 
             <div>
-                <label for="content" class="block text-sm font-medium text-gray-700">
+                <label for="content" class="block text-sm font-medium text-slate-500">
                     Content
                 </label>
                 <div class="mt-1">
-                    <textarea @bind="@article.Content" id="content" name="content" required></textarea>
+                    <textarea bind="@article.Content" id="content" name="content" required></textarea>
                 </div>
             </div>
 
             <div class="mt-1">
-                <select name="company-size" id="company-size">
-                    <option value="">Please select</option>
-                    <option value="small">1 to 10 employees</option>
-                    <option value="medium">11 to 50</option>
-                    <option value="large">50+ employees</option>
-                </select>
-            </div>
-
-            <div>
-                <label for="cover-photo" class="block text-sm font-medium text-gray-700">Cover Image</label>
+                <label for="content" class="block text-sm font-medium text-slate-500">
+                    Categories
+                </label>
                 <div class="mt-1">
-                    <input @bind="@article.FeaturedImageUri" type="file" id="cover-photo" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100" tabindex="-1"/>
+                    <div class="relative">
+                        <input onfocus="@OpenDropDown" bind="@categorySearchName" bind:event="oninput" onchange="@SearchForCategories" type="text" />
+                        <div class="absolute w-full bg-white border overflow-hidden rounded-xl shadow-lg @(dropdownOpen ? "" : "hidden")">
+                            @if (categoriesOptions is not null)
+                            {
+                                @foreach (var categoryOption in categoriesOptions)
+                                {
+                                    <div onfocusout="@CloseDropDown" onclick="@(() => AddCategory(categoryOption.Id))"  class="border-t border-gray-300 px-4 py-2 text-sm hover:bg-gray-500 hover:text-white flex align-center cursor-pointer">
+                                        @categoryOption.Name
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="border-t border-gray-300 w-full px-4 py-2 text-sm z-40">There are no categories to selec</div>
+                            }
+                        </div>
+                    </div>
+                    @if (categoriesSelected?.Any() ?? false)
+                    {
+                        <div class="flex flex-wrap mt-2 text-sm">
+                            @foreach (var category in categoriesSelected)
+                            {
+                                <div class="flex mb-2 mr-2 py-2 pl-4 pr-2 rounded-full text-slate-500 bg-cyan-100 cursor-default w-fit">
+                                    <span>
+                                        @category.Name
+                                    </span>
+                                    <span onclick="@(() => RemoveCategory(category.Id))" class="ml-1 cursor-pointer hover:text-red-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    }
                 </div>
             </div>
 
-            <div class="flex items-center">
-                <input id="terms-and-privacy" name="terms-and-privacy" type="checkbox"/>
-                <label for="terms-and-privacy" class="pl-2 block text-sm text-gray-900">I agree to the <a href="#" class="text-indigo-600 hover:text-indigo-500">Terms</a> and <a href="#" class="text-indigo-600 hover:text-indigo-500">Privacy Policy</a></label>
+            <div>
+                <label for="cover-photo" class="block text-sm font-medium text-slate-500">Cover Image</label>
+                <div class="mt-1">
+                    <InputFile OnChange="@LoadFiles" required id="cover-photo" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100 rounded focus:outline-none focus:outline-indigo-500 "/>
+                </div>
             </div>
 
-            <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Create
-            </button>
+            <button type="submit" class="button">Create</button>
         </form>
     </div>
 </div>
 
 @code {
+
+    private ICollection<CategoryGetDTO>? categoriesOptions;
+    private ICollection<CategoryGetDTO>? categoriesSelected;
     private (string Title, string Content, string Excerpt, string FeaturedImageUri) article;
+    private string categorySearchName = string.Empty;
+    private bool dropdownOpen;
+
+    protected override async Task OnInitializedAsync()
+    {
+        categoriesSelected ??= new List<CategoryGetDTO>();
+
+        categoriesOptions = await Mediator.Send(new GetCategoriesQuery(new PaginationFilter()));
+    }
 
     private async Task CreateArticle()
     {
+        if (categoriesSelected is null)
+            return;
+
         var (title, content, excerpt, featuredImageUri) = article;
 
-        var createdArticle = new CreateArticleCommand(new ArticleCreateDTO(title, content, excerpt, Guid.Empty, DateTime.Now, featuredImageUri));
+        var categoriesIds = categoriesSelected?.Select(c => c.Id);
+
+        var createdArticle = new CreateArticleCommand(
+            new ArticleCreateDTO(title, content, excerpt, Guid.Empty, DateTime.Now, featuredImageUri, categoriesIds ?? Array.Empty<Guid>()));
 
         await Mediator.Send(createdArticle);
 
         _navigationManager.NavigateTo("");
+    }
+
+    private async Task SearchForCategories()
+    {
+        if (categorySearchName.Length == 0)
+            return;
+
+        var categories = await Mediator.Send(new SearchCategoriesQuery(categorySearchName));
+
+        categoriesOptions = categories;
+
+        StateHasChanged();
+    }
+
+    private void AddCategory(Guid categoryId)
+    {
+        if (categoriesOptions is null)
+            return;
+
+        var category = categoriesOptions.Where(c => c.Id == categoryId).First();
+
+        categoriesOptions!.Remove(category);
+
+        categoriesSelected!.Add(category);
+
+        StateHasChanged();
+    }
+
+    private void RemoveCategory(Guid categoryId)
+    {
+        if (categoriesSelected is null)
+            return;
+
+        var category = categoriesSelected.Where(c => c.Id == categoryId).First();
+
+        categoriesSelected!.Remove(category);
+
+        categoriesOptions?.Add(category) ;
+
+        StateHasChanged();
+    }
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+
+        try
+        {
+            var dirPath = Path.Combine(_environment.ContentRootPath, "Uploads", "Images");
+
+            CheckIfDirectoryExists(dirPath);
+
+            var trustedFileName = Path.GetRandomFileName();
+
+            var filePath = Path.Combine(dirPath, trustedFileName);
+
+            await using var fs = new FileStream(filePath, FileMode.Create);
+
+            await file.OpenReadStream().CopyToAsync(fs);
+
+            article.FeaturedImageUri = filePath;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("File: {Filename} Error: {Error}", file.Name, ex.Message);
+        }
+    }
+
+    private void CheckIfDirectoryExists(string dirPath)
+    {
+        Directory.CreateDirectory(dirPath);
+    }
+
+    private void OpenDropDown()
+    {
+        dropdownOpen = true;
+        
+        StateHasChanged();
+    }
+
+    private void CloseDropDown()
+    {
+        dropdownOpen = false;
+
+        StateHasChanged();
     }
 
 }
