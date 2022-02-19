@@ -1,4 +1,3 @@
-using AutoMapper;
 using Common.Application.Common.Extensions;
 using Common.Application.Common.Mappings;
 using Common.Domain.Entities;
@@ -7,6 +6,7 @@ namespace Common.Application.Categories.Queries.DTOs;
 
 public record CategoryGetDTO : IMapFrom<Category>
 {
+    public Guid Id { get; init; }
     public string Name { get; init; } = string.Empty;
 
     public string Slug { get; init; } = string.Empty;
