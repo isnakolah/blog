@@ -1,5 +1,4 @@
 using System.Net.Http.Headers;
-using Common.Application.Common.Models.ServiceResult;
 using Common.Domain.Enums;
 
 namespace Common.Application.Common.Interfaces;

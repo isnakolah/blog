@@ -1,4 +1,3 @@
-using AutoMapper;
 using Common.Application.Articles.Commands.DTOs;
 
 namespace Common.Application.Articles.Commands.Create;

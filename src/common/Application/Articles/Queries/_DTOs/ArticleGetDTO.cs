@@ -1,4 +1,3 @@
-using AutoMapper;
 using Common.Application.Authors.Queries.DTOs;
 using Common.Application.Categories.Queries.DTOs;
 using Common.Application.Common.Extensions;

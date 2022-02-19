@@ -17,8 +17,9 @@ public class GetAllArticlesQueryHandler : IRequestHandlerPaginatedWrapper<GetAll
 
     public async Task<PaginatedServiceResult<ArticleGetDTO>> Handle(GetAllArticlesQuery request, CancellationToken cancellationToken)
     {
-        var paginatedArticles = await _paginate.GetPaginatedResultAsync<Article, ArticleGetDTO>(
-            _context.Articles.AsQueryable(), request.PaginationFilter, cancellationToken);
+        var source = _context.Articles.AsQueryable();
+        
+        var paginatedArticles = await _paginate.GetPaginatedResultAsync<Article, ArticleGetDTO>(source, request.PaginationFilter, cancellationToken);
         
         return paginatedArticles;
     }

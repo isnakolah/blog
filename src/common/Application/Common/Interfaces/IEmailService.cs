@@ -1,5 +1,3 @@
-using Common.Application.Common.Models;
-
 namespace Common.Application.Common.Interfaces;
 
 public interface IEmailService

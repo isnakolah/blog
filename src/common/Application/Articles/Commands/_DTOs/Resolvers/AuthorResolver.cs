@@ -1,4 +1,3 @@
-using AutoMapper;
 using Common.Domain.Entities;
 
 namespace Common.Application.Articles.Commands.DTOs.Resolvers;

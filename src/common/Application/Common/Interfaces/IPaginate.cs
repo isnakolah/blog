@@ -1,6 +1,3 @@
-using Common.Application.Common.Models;
-using Common.Application.Common.Models.ServiceResult;
-
 namespace Common.Application.Common.Interfaces;
 
 public interface IPaginate

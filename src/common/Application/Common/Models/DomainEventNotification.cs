@@ -1,6 +1,4 @@
 using Common.Domain.Common.Entities;
-using MediatR;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Common.Application.Common.Models;
 

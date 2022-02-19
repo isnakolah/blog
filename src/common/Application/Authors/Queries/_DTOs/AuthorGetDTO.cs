@@ -1,4 +1,3 @@
-using AutoMapper;
 using Common.Application.Common.Mappings;
 using Common.Domain.Entities;
 

@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace Common.Application.Common.Behaviours;
@@ -25,7 +24,9 @@ internal sealed class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehav
         var elapsedMilliseconds = _timer.ElapsedMilliseconds;
 
         if (elapsedMilliseconds > 500)
+        {
             _logger.LogWarning("EPharmacy Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Request}",typeof(TRequest).Name, elapsedMilliseconds, request);
+        }
 
         return response;
     }

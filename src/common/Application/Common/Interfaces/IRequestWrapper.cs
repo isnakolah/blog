@@ -1,6 +1,3 @@
-using Common.Application.Common.Models.ServiceResult;
-using MediatR;
-
 namespace Common.Application.Common.Interfaces;
 
 public interface IRequestWrapper : IRequest<ServiceResult>
